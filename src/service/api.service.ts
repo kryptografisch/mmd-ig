@@ -1,12 +1,11 @@
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 export interface ImageData {
   url: string;
   description: string;
   likes: number;
   id: number;
 }
-
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
-
 export const getImageData = async (): Promise<ImageData[]> => {
   try {
     const response = await fetch(`${API_BASE}/getimages.php`);
@@ -23,11 +22,30 @@ export enum LikeResult {
   OK = 1,
   ERROR = 2,
 }
-
+interface ApiResult {
+  STATUS: "OK" | "ERROR";
+}
 export const toggleLike = async (
   like: boolean,
   id: number
 ): Promise<LikeResult> => {
-  console.log(id, like);
-  return LikeResult.OK;
+  try {
+    const response = await fetch(`${API_BASE}/rateimages.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id, rate: like ? "LIKE" : "UNLIKE" }),
+    });
+
+    const result = (await response.json()) as ApiResult;
+    if (result.STATUS === "OK") {
+      return LikeResult.OK;
+    } else {
+      return LikeResult.ERROR;
+    }
+  } catch (error) {
+    console.log(`an error occurred on toggleLike`, error);
+    return LikeResult.ERROR;
+  }
 };
