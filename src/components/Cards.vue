@@ -2,6 +2,7 @@
 import { onMounted } from "vue";
 import { ref } from "vue";
 import { ImageData, getImageData } from "../service/api.service";
+import Card from "./Card.vue";
 
 const images = ref<ImageData[]>([]);
 const api_error = ref<string | null>(null);
@@ -25,8 +26,7 @@ onMounted(async () => {
       ><br />Please try reloading.
     </div>
     <div v-for="image in images" :key="image.id">
-      {{ image.id }}
-      {{ image.description }}
+      <Card :image="image"></Card>
     </div>
   </div>
 </template>
@@ -36,5 +36,6 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin: 1rem 0.25rem;
 }
 </style>
