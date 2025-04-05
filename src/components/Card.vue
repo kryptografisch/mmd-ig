@@ -13,6 +13,11 @@ const likeImage = async () => {
   const result = await toggleLike(!isImageLiked.value, image.id);
   if (result === LikeResult.OK) {
     isImageLiked.value = !isImageLiked.value;
+  } else {
+    showError.value = true;
+    setTimeout(() => {
+      showError.value = false;
+    }, 1500);
   }
 };
 </script>
@@ -20,7 +25,7 @@ const likeImage = async () => {
 <template>
   <div class="card">
     <div class="card-inner">
-      <div class="card-error" :class="{ visible: true }">
+      <div class="card-error" :class="{ visible: showError }">
         An error occurred. Please try again.
       </div>
       <div class="card-action" @click="likeImage">
