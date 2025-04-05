@@ -7,15 +7,15 @@ made my day image gallery
 
 ## Project Setup
 
-### Platform
+1. install Node v23.11.0
 
-Node v23.11.0
-
-### Install dependencies
+2. install dependencies
 
 ```sh
 npm install
 ```
+
+3. create .env file from .env.dist
 
 ### Start development server
 
