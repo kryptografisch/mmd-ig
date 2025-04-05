@@ -6,6 +6,8 @@ const { image } = defineProps<{
   image: ImageData;
 }>();
 
+const showError = ref(false);
+
 const isImageLiked = ref(false);
 const likeImage = async () => {
   const result = await toggleLike(!isImageLiked.value, image.id);
@@ -18,6 +20,9 @@ const likeImage = async () => {
 <template>
   <div class="card">
     <div class="card-inner">
+      <div class="card-error" :class="{ visible: true }">
+        An error occurred. Please try again.
+      </div>
       <div class="card-action" @click="likeImage">
         <div v-if="isImageLiked" class="unlike">💔</div>
         <div v-else class="like">❤️</div>
@@ -71,5 +76,23 @@ const likeImage = async () => {
 .card-action .unlike {
   zoom: 4;
   cursor: pointer;
+}
+
+.card-error {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: red;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 1000;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.card-error.visible {
+  display: flex;
 }
 </style>
