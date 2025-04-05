@@ -18,3 +18,16 @@ export const getImageData = async (): Promise<ImageData[]> => {
     throw "failed to fetch";
   }
 };
+
+export enum LikeResult {
+  OK = 1,
+  ERROR = 2,
+}
+
+export const toggleLike = async (
+  like: boolean,
+  id: number
+): Promise<LikeResult> => {
+  console.log(id, like);
+  return LikeResult.OK;
+};
