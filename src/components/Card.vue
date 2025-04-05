@@ -17,16 +17,15 @@ const likeImage = async () => {
 
 <template>
   <div class="card">
-    <div tabindex="0" class="card-inner" @click="likeImage">
+    <div class="card-inner">
+      <div class="card-action" @click="likeImage">
+        <div v-if="isImageLiked" class="unlike">💔</div>
+        <div v-else class="like">❤️</div>
+      </div>
       <img :src="image.url" alt="image" />
       <div class="card-info">
-        <div class="card-info-text">
-          <div>{{ image.description }}</div>
-          <div>💕 {{ isImageLiked ? image.likes + 1 : image.likes }}</div>
-        </div>
-        <div class="card-info-action">
-          <span>click to {{ isImageLiked ? "unlike" : "like" }} </span>
-        </div>
+        <div>{{ image.description }}</div>
+        <div>💕 {{ isImageLiked ? image.likes + 1 : image.likes }}</div>
       </div>
     </div>
   </div>
@@ -40,6 +39,7 @@ const likeImage = async () => {
 .card-inner {
   border: 1px solid darkgrey;
   border-radius: 10px;
+  position: relative;
 }
 .card-inner img {
   width: 100%;
@@ -49,36 +49,27 @@ const likeImage = async () => {
   border-top-right-radius: 10px;
 }
 
-.card-inner:hover {
-  img {
-    opacity: 0.9;
-  }
-  .card-info-text {
-    display: none;
-  }
-  .card-info-action {
-    display: flex;
-  }
-}
-
 .card-info {
   min-height: 40px;
-}
-
-.card-info-text {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
 
-.card-info-action {
-  display: none;
-  justify-content: center;
-  padding: 0.5rem 1rem;
+.card-action {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 10vh;
+  height: 10vh;
+}
+.card-action > div {
   width: 100%;
 }
-.card-info-action::before {
-  content: "❤️";
-  margin-right: 0.5rem;
+
+.card-action .like,
+.card-action .unlike {
+  zoom: 4;
+  cursor: pointer;
 }
 </style>
