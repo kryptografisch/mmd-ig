@@ -72,6 +72,8 @@ const likeImage = async () => {
   top: 0;
   width: 10vh;
   height: 10vh;
+  text-align: right;
+  padding-right: 0.5rem;
 }
 .card-action > div {
   width: 100%;
@@ -79,8 +81,15 @@ const likeImage = async () => {
 
 .card-action .like,
 .card-action .unlike {
-  zoom: 4;
+  zoom: 2;
   cursor: pointer;
+}
+
+@media (min-width: 360px) {
+  .card-action .like,
+  .card-action .unlike {
+    zoom: 3;
+  }
 }
 
 .card-error {
