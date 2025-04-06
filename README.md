@@ -26,3 +26,5 @@ npm run dev
 ## Showcase
 
 ![Showcase](./showcase.gif)
+
+or try the demo [here](https://mmd-57a333491268.herokuapp.com/)
