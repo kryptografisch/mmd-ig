@@ -19,7 +19,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="cards">
+  <div class="cards" :class="{ empty: images.length === 0 || api_error }">
     <div v-if="images.length === 0 && !api_error">Loading...</div>
     <div v-if="api_error !== null">
       An error occurred: <code>{{ api_error }}</code
@@ -32,6 +32,13 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+.cards.empty {
+  min-height: 95vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .card-items {
   display: flex;
   flex-wrap: wrap;
