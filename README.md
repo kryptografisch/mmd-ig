@@ -28,3 +28,7 @@ npm run dev
 ![Showcase](./showcase.gif)
 
 or try the demo [here](https://mmd-57a333491268.herokuapp.com/)
+
+## Open Todos
+
+see [TODO.md](./TODO.md)
