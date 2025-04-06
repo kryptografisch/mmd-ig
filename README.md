@@ -22,3 +22,7 @@ npm install
 ```sh
 npm run dev
 ```
+
+## Showcase
+
+![Showcase](./showcase.gif)
