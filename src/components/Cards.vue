@@ -25,17 +25,35 @@ onMounted(async () => {
       An error occurred: <code>{{ api_error }}</code
       ><br />Please try reloading.
     </div>
-    <div v-for="image in images" :key="image.id">
-      <Card :image="image"></Card>
+    <div class="card-items">
+      <Card v-for="image in images" :key="image.id" :image="image"></Card>
     </div>
   </div>
 </template>
 
 <style scoped>
-.cards {
+.card-items {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1rem;
   margin: 1rem 0.25rem;
+  justify-content: flex-start;
+}
+
+.card-items > * {
+  flex: 0 1 100%;
+  min-width: 0;
+}
+
+@media (min-width: 576px) {
+  .card-items > * {
+    flex: 0 1 calc(50% - 0.5rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .card-items > * {
+    flex: 0 1 calc(33.333% - 0.67rem);
+  }
 }
 </style>

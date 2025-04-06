@@ -5,3 +5,9 @@
   margin: 0 auto;
   font-weight: normal;
 }
+
+@media (min-width: 992px) {
+  #app {
+    max-width: 992px;
+  }
+}
